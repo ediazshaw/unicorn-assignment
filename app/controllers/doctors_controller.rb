@@ -13,6 +13,8 @@ class DoctorsController < ApplicationController
 
   def create
     @doctor = Doctor.new(doctor_params)
+    doctor_user = User.find_by(email:"#{@doctor.email}")
+    @doctor.user_id = doctor_user.id
     @doctor.save
     redirect_to doctor_path(@doctor)
   end
@@ -21,5 +23,5 @@ end
 private
 
 def doctor_params
-  params.require(:doctor).permit(:name)
+  params.require(:doctor).permit(:name, :email)
 end

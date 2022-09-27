@@ -1,3 +1,9 @@
-<h1>Are you a new doctor? <%= link_to "Click Here", doctors_new_path %></h1>
-<h1>Are you a new patient? Click here</h1>
-<h1>Are you a new admin? Click here</h1>
+<% if @current_doctor_user == "Doctor" %>
+  <h1>Are you a current doctor? <%= link_to "Click Here", doctor_path(@current_doctor_id)%>
+<% elsif @current_patient_user == "Patient" %>
+  <h1>Are you a current patient? <%= link_to "Click Here", patient_path(@current_patient_id)%>
+<% else %>
+  <h1>Are you a new doctor? <%= link_to "Click Here", doctors_new_path %></h1>
+  <h1>Are you a new patient? <%= link_to "Click Here", patients_new_path %></h1>
+  <h1>Are you a new admin? Click here</h1>
+<% end %>

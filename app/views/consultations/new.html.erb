@@ -1,11 +1,34 @@
+<br>
 <%= form_with model: @consultation do |f| %>
-  <p>Choose Doctor:</p>
+  <%= f.label :doctor_id %>
+  <%= f.text_field :doctor_id %>
+
+  <%= f.submit %>
+<% end %>
+  Welcome <%= current_user.email %>
+  <% if @current_doctor_user == "Doctor" %>
+<p>Choose patient:</p>
+  <% @patients.each do |patient| %>
+    <p><%= patient.name %></p>
+  <% end %>
+<%= form_with model: @patient do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.submit %>
+<% end %>
+
+<% end %>
+
+<% if @current_patient_user == "Patient" %>
+ <p>Choose Doctor:</p>
   <% @doctors.each do |doctor| %>
     <p><%= doctor.name %></p>
   <% end %>
-  <%= f.label :doctor_id %>
-  <%= f.text_field :doctor_id %>
-  <%= f.label :patient_id %>
-  <%= f.text_field :patient_id %>
+<%= form_with model: @doctor do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
   <%= f.submit %>
+<% end %>
 <% end %>

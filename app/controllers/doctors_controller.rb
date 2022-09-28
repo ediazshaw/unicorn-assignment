@@ -18,6 +18,11 @@ class DoctorsController < ApplicationController
     @doctor.save
     redirect_to doctor_path(@doctor)
   end
+
+  def consult
+    @doctor = Doctor.find_by(email: current_user.email)
+    
+  end
 end
 
 private

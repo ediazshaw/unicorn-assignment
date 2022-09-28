@@ -1,0 +1,8 @@
+Hola
+<%= @doctor.name %>
+<%= form_with model: @doctor do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.submit %>
+  <% end %>

@@ -1,0 +1,11 @@
+<h1>All Consultations</h1>
+<% @consultations.each do |consultation| %>
+  <p>----------------------------------</p>
+  <p>Consultation <%= consultation.id %></p>
+  <p>Doctor: <%= Doctor.find(consultation.doctor_id).name %></p>
+  <p>Patient: <%= Patient.find(consultation.patient_id).name %></p>
+  <p>Date: <%= consultation.date %></p>
+  <p>Starting Time: <%= consultation.starting_time.to_s.chars.insert(2,[":"]).join %></p>
+  <p>Ending Time: <%= (consultation.starting_time + consultation.duration).to_s.chars.insert(2,[":"]).join %></p>
+  <p>----------------------------------</p>
+<% end %>

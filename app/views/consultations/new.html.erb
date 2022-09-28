@@ -1,0 +1,11 @@
+<%= form_with model: @consultation do |f| %>
+  <p>Choose Doctor:</p>
+  <% @doctors.each do |doctor| %>
+    <p><%= doctor.name %></p>
+  <% end %>
+  <%= f.label :doctor_id %>
+  <%= f.text_field :doctor_id %>
+  <%= f.label :patient_id %>
+  <%= f.text_field :patient_id %>
+  <%= f.submit %>
+<% end %>

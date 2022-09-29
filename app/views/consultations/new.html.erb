@@ -1,34 +1,7 @@
-<br>
-<%= form_with model: @consultation do |f| %>
-  <%= f.label :doctor_id %>
-  <%= f.text_field :doctor_id %>
-
-  <%= f.submit %>
-<% end %>
-  Welcome <%= current_user.email %>
-  <% if @current_doctor_user == "Doctor" %>
-<p>Choose patient:</p>
-  <% @patients.each do |patient| %>
-    <p><%= patient.name %></p>
-  <% end %>
-<%= form_with model: @patient do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-
-  <%= f.submit %>
-<% end %>
-
-<% end %>
-
-<% if @current_patient_user == "Patient" %>
- <p>Choose Doctor:</p>
-  <% @doctors.each do |doctor| %>
-    <p><%= doctor.name %></p>
-  <% end %>
-<%= form_with model: @doctor do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-
-  <%= f.submit %>
-<% end %>
+<%= simple_form_for [@doctor, @consultation] do |f| %>
+    <%= f.input :patient_id %>
+  <%= f.input :date %>
+  <%= f.input :starting_time %>
+  <%= f.input :duration %>
+  <%= f.submit "Submit review", class: "btn btn-primary" %>
 <% end %>

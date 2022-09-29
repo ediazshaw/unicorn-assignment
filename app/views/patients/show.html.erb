@@ -1,1 +1,6 @@
 <h2><%= @patient.name %></h2>
+<h1>All doctors</h1>
+<% @doctors.each do |doctor| %>
+  <p><%= doctor.name %></p>
+<% end %>
+<%= link_to "Choose doctor for appointment", patient_doctors_path(Patient.find_by(email:current_user.email).id) %>

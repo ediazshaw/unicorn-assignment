@@ -5,6 +5,7 @@ class DoctorsController < ApplicationController
 
   def show
     @doctor = Doctor.find(params[:id])
+    @patient_id = params[:patient_id]
   end
 
   def new
@@ -19,10 +20,10 @@ class DoctorsController < ApplicationController
     redirect_to doctor_path(@doctor)
   end
 
-  def consult
-    @doctor = Doctor.find_by(email: current_user.email)
-    
-  end
+  # def consult
+  #   @doctor = Doctor.find_by(email: current_user.email)
+
+  # end
 end
 
 private

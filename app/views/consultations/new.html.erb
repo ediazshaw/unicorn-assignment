@@ -1,5 +1,9 @@
-<%= simple_form_for [@doctor, @consultation] do |f| %>
-    <%= f.input :patient_id %>
+<h1>Doctors</h1>
+<% @doctors.each do |doctor| %>
+  <p><%= doctor.name %> </p>
+<% end %>
+<%= simple_form_for [@patient, @consultation] do |f| %>
+    <%= f.input :doctor_name %>
   <%= f.input :date %>
   <%= f.input :starting_time %>
   <%= f.input :duration %>

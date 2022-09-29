@@ -20,10 +20,9 @@ class DoctorsController < ApplicationController
     redirect_to doctor_path(@doctor)
   end
 
-  # def consult
-  #   @doctor = Doctor.find_by(email: current_user.email)
-
-  # end
+  def slots
+    
+  end
 end
 
 private

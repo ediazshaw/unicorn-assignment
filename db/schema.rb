@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_29_123835) do
+ActiveRecord::Schema.define(version: 2022_09_30_063224) do
 
   create_table "consultations", force: :cascade do |t|
     t.integer "doctor_id"
     t.integer "patient_id"
     t.boolean "cancelled", default: false
     t.date "date"
-    t.integer "starting_time"
+    t.time "starting_time"
     t.integer "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

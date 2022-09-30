@@ -8,7 +8,6 @@
   <% hash["#{hour.to_s}.45-#{(hour +1).to_s}.00"] = nil %>
   <% hour += 1 %>
 <% end %>
-<%= p hash.keys %>
 <% array = Consultation.where(doctor_id: params[:id]) %>
 
 <% array_with_keys = [] %>
@@ -22,7 +21,13 @@
 <% end %>
 <p>Hola</p>
 <p><%= array_with_keys.each{|x| x} %></p>
-
+<%
+=begin %>
+<% hours_count = {} %>
+<% hours_count[Doctor.find(params[:id]).name] = array_with_keys.size * 15 %>
+<p><%= hours_count.values %></p>
+<%
+=end %>
 <% hash.keys.each do |key| %>
   <p><%= key %>:
     <% array_with_keys.each do |key_of_key| %>

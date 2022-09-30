@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get "about", to: "pages#about"
   get "type", to: "pages#type"
+  get "admins/new", to: "admins#new"
+  get "admins/:id", to: "admins#show", :as => 'admin'
+  post "admins", to: "admins#create"
   get "doctors", to: "doctors#index"
   get "doctors/new", to: "doctors#new"
   get "doctors/:id", to: "doctors#show", :as => 'doctor'

@@ -1,1 +1,32 @@
 <h1>Slots</h1>
+<% hash = {} %>
+<% hours = (9..17).to_a %>
+<% hours.each do |hour| %>
+  <% hash["#{hour.to_s}.00-#{hour.to_s}.15"] = nil %>
+  <% hash["#{hour.to_s}.15-#{hour.to_s}.30"] = nil %>
+  <% hash["#{hour.to_s}.30-#{hour.to_s}.45"] = nil %>
+  <% hash["#{hour.to_s}.45-#{(hour +1).to_s}.00"] = nil %>
+  <% hour += 1 %>
+<% end %>
+<%= p hash.keys %>
+<% array = Consultation.where(doctor_id: params[:id]) %>
+
+<% array_with_keys = [] %>
+<% array.each do |consult| %>
+  <% end_time = (consult.starting_time + (consult.duration * 60)) %>
+  <% start_slot = consult.starting_time %>
+  <% while start_slot != end_time %>
+    <% array_with_keys << "#{start_slot.strftime("%H.%M")}-#{(start_slot + (15 * 60)).strftime("%H.%M")}" %>
+    <% start_slot =  (start_slot + (15 * 60)) %>
+  <% end %>
+<% end %>
+<p>Hola</p>
+<p><%= array_with_keys.each{|x| x} %></p>
+
+<% hash.keys.each do |key| %>
+  <p><%= key %>:
+    <% array_with_keys.each do |key_of_key| %>
+      <%= p "Not Available" if key == key_of_key %>
+    <% end %>
+  </p>
+<% end %>

@@ -21,7 +21,7 @@ class DoctorsController < ApplicationController
   end
 
   def slots
-    
+    @hour = 9
   end
 end
 

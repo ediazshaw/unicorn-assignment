@@ -23,6 +23,14 @@ class DoctorsController < ApplicationController
   def slots
     @hour = 9
   end
+
+  def busiest_doctors
+    @doctors = Doctor.all
+  end
+
+  def over_six_hours
+    @doctors = Doctor.all
+  end
 end
 
 private

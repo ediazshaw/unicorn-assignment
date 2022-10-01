@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get "admins/:id", to: "admins#show", :as => 'admin'
   post "admins", to: "admins#create"
   get "doctors", to: "doctors#index"
+  get "doctors/busiest_doctors", to: "doctors#busiest_doctors"
+  get "doctors/over_six_hours", to: "doctors#over_six_hours"
   get "doctors/new", to: "doctors#new"
   get "doctors/:id", to: "doctors#show", :as => 'doctor'
   get "doctors/:id/slots", to: "doctors#slots", :as => 'doctor_slots'

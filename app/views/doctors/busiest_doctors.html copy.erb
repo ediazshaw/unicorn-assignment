@@ -1,0 +1,12 @@
+<h1>Busiest Doctors</h1>
+<% busiest_doctors_hash = {} %>
+<% @doctors.each do |doctor| %>
+<% number_minutes = 0 %>
+  <% Consultation.where(doctor_name: doctor.name).each do |consult| %>
+    <% number_minutes += consult.duration %>
+  <% end %>
+  <% busiest_doctors_hash[doctor.name] = number_minutes %>
+<% end %>
+<% busiest_doctors_hash.sort_by {|k,v| v}.reverse.first(2).each do |elem| %>
+  <p><%= "#{elem[0]} has #{elem[1]} minutes of appointments" %></p>
+<% end %>

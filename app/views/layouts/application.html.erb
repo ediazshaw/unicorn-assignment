@@ -14,6 +14,7 @@
   <br>
   <br>
     <%= link_to "Log out", destroy_user_session_path, :method => :delete %>
+    <p><%= current_user.email if current_user != nil %></p>
     <%= yield %>
   </body>
 </html>

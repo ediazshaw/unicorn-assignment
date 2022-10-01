@@ -7,6 +7,6 @@
   <% end %>
   <% over_six_hours_hash[doctor.name] = number_minutes %>
 <% end %>
-<% over_six_hours_hash.sort_by {|k,v| v}.reverse.first(2).each do |elem| %>
-  <p><%= "#{elem[0]} has #{elem[1]} minutes of appointments" %></p>
+<% over_six_hours_hash.each do |k,v| %>
+  <p><%= k if v > 6*60 %></p>
 <% end %>

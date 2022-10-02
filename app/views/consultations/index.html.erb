@@ -7,5 +7,8 @@
   <p>Date: <%= consultation.date %></p>
   <p>Starting Time: <%= consultation.starting_time.strftime("%H:%M %p") %></p>
   <p>Ending Time: <%= (consultation.starting_time + (consultation.duration * 60)).strftime("%H:%M %p") %></p>
+  <% if Admin.find_by(email:current_user.email).class.to_s == "Admin" %>
+    <p>Cancel Appointment <%= link_to "Click Here", cancel_consultation_path(consultation.id) %></p>
+  <% end %>
   <p>----------------------------------</p>
 <% end %>

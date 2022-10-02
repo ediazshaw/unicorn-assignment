@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   post "doctors", to: "doctors#create"
   get "consultations", to: "consultations#index"
   get "consultations/:id", to: "consultations#show", :as => 'consultation'
+  get "consultations/:id/cancelled", to: "consultations#cancelled", :as => 'cancel_consultation'
   resources :patients, only: [:index, :show,:new, :create] do
     resources :consultations, only: [:new, :create]
   end

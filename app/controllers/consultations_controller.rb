@@ -35,6 +35,12 @@ class ConsultationsController < ApplicationController
     # @consultation.save
     # redirect_to doctor_path(@doctor)
   end
+
+  def cancelled
+    @consultation = Consultation.find(params[:id])
+    @consultation.cancelled = true
+    @consultation.save
+  end
 end
 
 private

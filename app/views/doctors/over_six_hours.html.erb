@@ -2,7 +2,7 @@
 <% over_six_hours_hash = {} %>
 <% @doctors.each do |doctor| %>
 <% number_minutes = 0 %>
-  <% Consultation.where(doctor_name: doctor.name).each do |consult| %>
+  <% Consultation.where(doctor_name: doctor.name).where(cancelled: false).each do |consult| %>
     <% number_minutes += consult.duration %>
   <% end %>
   <% over_six_hours_hash[doctor.name] = number_minutes %>

@@ -1,8 +1,8 @@
 <h1>Doctors</h1>
 <% @doctors.each do |doctor| %>
-  <% number_appoinments = Consultation.where(doctor_name: doctor.name).size %>
+  <% number_appoinments = Consultation.where(doctor_name: doctor.name).where(cancelled: false).size %>
   <% number_minutes = 0 %>
-  <% Consultation.where(doctor_name: doctor.name).each do |consult| %>
+  <% Consultation.where(doctor_name: doctor.name).where(cancelled: false).each do |consult| %>
     <% number_minutes += consult.duration %>
   <% end %>
   <p><%= doctor.name if number_appoinments <= 12 && number_minutes <= 60*8  %></p>

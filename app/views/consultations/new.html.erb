@@ -22,7 +22,7 @@
     <% number_minutes += consult.duration %>
   <% end %>
   <p><%= doctor.name if number_appoinments <= 12 && number_minutes <= 60*8  %></p>
-<p>Not available slots: <%= array_with_keys.each{|x| x} %></p>
+<p>Not available slots: <%= array_with_keys.sort.each{|x| x} %></p>
 <% end %>
 <%= simple_form_for [@patient, @consultation] do |f| %>
     <%= f.input :doctor_name %>

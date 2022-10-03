@@ -2,12 +2,11 @@ class PatientsController < ApplicationController
 
   def index
     @patients = Patient.all
-    @doctors = Doctor.all
+    render json: @patients
   end
 
   def show
     @patient = Patient.find(params[:id])
-    @doctors = Doctor.all
   end
 
   def new

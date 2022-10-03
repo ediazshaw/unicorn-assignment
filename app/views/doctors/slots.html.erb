@@ -8,7 +8,7 @@
   <% hash["#{hour.to_s}.45-#{(hour +1).to_s}.00"] = nil %>
   <% hour += 1 %>
 <% end %>
-<% array = Consultation.where(doctor_id: params[:id]) %>
+<% array = Consultation.where(doctor_id: params[:id]).where(cancelled: false) %>
 
 <% array_with_keys = [] %>
 <% array.each do |consult| %>

@@ -16,6 +16,8 @@ class ConsultationsController < ApplicationController
     # @patients = Patient.all
     # @consultation = Consultation.new
     @doctors = Doctor.all
+    @doctors_array = []
+    @doctors.each { |doctor| @doctors_array << doctor.name}
     @patient = Patient.find(params[:patient_id]) if Patient.find_by(email: current_user.email).class.to_s == "Patient"
     @consultation = Consultation.new
   end

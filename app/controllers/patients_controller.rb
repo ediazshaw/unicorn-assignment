@@ -20,6 +20,11 @@ class PatientsController < ApplicationController
     @patient.save
     redirect_to patient_path(@patient)
   end
+
+  def my_appointments
+    @patient = Patient.find(params[:id])
+    @appointments = Consultation.where(patient_id: @patient.id)
+  end
 end
 
 private

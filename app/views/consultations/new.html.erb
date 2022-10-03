@@ -25,9 +25,13 @@
 <p>Not available slots: <%= array_with_keys.sort.each{|x| x} %></p>
 <% end %>
 <%= simple_form_for [@patient, @consultation] do |f| %>
-    <%= f.input :doctor_name %>
+  <p>Select a doctor, please select and available slot</p>
+  <%= f.input :doctor_name, :collection => @doctors_array %>
+  <p>Choose a date</p>
   <%= f.input :date %>
+  <p>Choose a starting time (:00, :15, :30 or :45)</p>
   <%= f.input :starting_time %>
+  <p>Choose duration in minutes between 15 and 120 min</p>
   <%= f.input :duration %>
-  <%= f.submit "Submit review", class: "btn btn-primary" %>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>

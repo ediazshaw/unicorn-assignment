@@ -1,5 +1,14 @@
 <% if @current_doctor_user == "Doctor" %>
-  <h1>Are you a current doctor? <%= link_to "Click Here", doctor_path(@current_doctor_id)%>
+  <p>Cancel an appointment <%= link_to "Click Here", consultations_path %>
+  <% Doctor.all.each do |doctor| %>
+  <p>Check <%= doctor.name %>'s schedule <%= link_to "Click Here", doctor_slots_path(doctor.id) %>
+    <%= link_to "Check your appointments", doctor_my_appointments_path(doctor.id) if doctor.email == current_user.email %>
+  </p>
+<% end %>
+  <% Patient.all.each do |patient| %>
+  <p>Check <%= patient.name %>'s appointment history <%= link_to "Click Here", patient_my_appointments_path(patient.id) %>
+  </p>
+<% end %>
 <% elsif @current_patient_user == "Patient" %>
   <h1>Are you a current patient? <%= link_to "Click Here", patient_path(@current_patient_id)%>
 <% elsif @current_admin_user == "Admin" %>

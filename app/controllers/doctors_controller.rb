@@ -33,6 +33,11 @@ class DoctorsController < ApplicationController
   def over_six_hours
     @doctors = Doctor.all
   end
+
+  def my_appointments
+    @doctor = Doctor.find(params[:id])
+    @appointments = Consultation.where(doctor_id: @doctor.id)
+  end
 end
 
 private

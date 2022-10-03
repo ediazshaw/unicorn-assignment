@@ -15,12 +15,11 @@
   <% end_time = (consult.starting_time + (consult.duration * 60)) %>
   <% start_slot = consult.starting_time %>
   <% while start_slot != end_time %>
-    <% array_with_keys << "#{start_slot.strftime("%H.%M")}-#{(start_slot + (15 * 60)).strftime("%H.%M")}" %>
+    <% array_with_keys << ["#{start_slot.strftime("%H.%M")}-#{(start_slot + (15 * 60)).strftime("%H.%M")}", Patient.find(consult.patient_id).name] %>
     <% start_slot =  (start_slot + (15 * 60)) %>
   <% end %>
 <% end %>
-<p>Hola</p>
-<p><%= array_with_keys.sort.each{|x| x} %></p>
+<p>Not available slots: <%= array_with_keys.sort.each{|x| x[0]} %></p>
 <%
 =begin %>
 <% hours_count = {} %>
@@ -31,7 +30,10 @@
 <% hash.keys.each do |key| %>
   <p><%= key %>:
     <% array_with_keys.each do |key_of_key| %>
-      <%= p "Not Available" if key == key_of_key %>
+      <% if key == key_of_key[0] %>
+        Not Available
+        <%= "consultation with #{key_of_key[1]}" if Patient.find_by(email:current_user.email).class.to_s != "Patient" %>
+      <% end %>
     <% end %>
   </p>
 <% end %>

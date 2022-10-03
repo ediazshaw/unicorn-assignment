@@ -16,7 +16,7 @@ class AdminsController < ApplicationController
   def create
     @admin = Admin.new(admin_params)
     admin_user = User.find_by(email:"#{@admin.email}")
-    @admin.user_id = admin_user.id
+    @admin.user_id = admin_user.id # linking user with admin model
     @admin.save
     redirect_to admin_path(@admin)
   end

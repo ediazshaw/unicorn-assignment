@@ -5,6 +5,7 @@
   <% Consultation.where(doctor_name: doctor.name).where(cancelled: false).each do |consult| %>
     <% number_minutes += consult.duration %>
   <% end %>
+  <%# create hash with key: doctor name, value: number of minutes for knowing who is the busiest %>
   <% busiest_doctors_hash[doctor.name] = number_minutes %>
 <% end %>
 <% busiest_doctors_hash.sort_by {|k,v| v}.reverse.first(2).each do |elem| %>

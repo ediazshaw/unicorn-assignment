@@ -1,3 +1,5 @@
+<%# This page is for deciding if you are a new user if you want to be a Doctor, Patient or Admin and linking the user to the model %>
+<%# The ifs are for showing the correct info depending on the kind of user that you are %>
 <% if @current_doctor_user == "Doctor" %>
   <p>Cancel an appointment <%= link_to "Click Here", consultations_path %>
   <% Doctor.all.each do |doctor| %>

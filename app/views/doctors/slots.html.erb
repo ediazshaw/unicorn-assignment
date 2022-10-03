@@ -1,6 +1,7 @@
 <h1>Slots</h1>
 <% hash = {} %>
 <% hours = (9..17).to_a %>
+<%# hash for having the slots as the keys %>
 <% hours.each do |hour| %>
   <% hash["#{hour.to_s}.00-#{hour.to_s}.15"] = nil %>
   <% hash["#{hour.to_s}.15-#{hour.to_s}.30"] = nil %>
@@ -9,7 +10,8 @@
   <% hour += 1 %>
 <% end %>
 <% array = Consultation.where(doctor_id: params[:id]).where(cancelled: false) %>
-
+<%# in array we have the consultations of a given doctor %>
+<%# In array_with_keys we are saving the slots slots that are occupied %>
 <% array_with_keys = [] %>
 <% array.each do |consult| %>
   <% end_time = (consult.starting_time + (consult.duration * 60)) %>
@@ -20,13 +22,7 @@
   <% end %>
 <% end %>
 <p>Not available slots: <%= array_with_keys.sort.each{|x| x[0]} %></p>
-<%
-=begin %>
-<% hours_count = {} %>
-<% hours_count[Doctor.find(params[:id]).name] = array_with_keys.size * 15 %>
-<p><%= hours_count.values %></p>
-<%
-=end %>
+<%# if array_with_keys element is equal to the slots key, it means that the slot is not available and we show it %>
 <% hash.keys.each do |key| %>
   <p><%= key %>:
     <% array_with_keys.each do |key_of_key| %>

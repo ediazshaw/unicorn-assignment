@@ -16,7 +16,7 @@ class PatientsController < ApplicationController
   def create
     @patient = Patient.new(patient_params)
     patient_user = User.find_by(email:"#{@patient.email}")
-    @patient.user_id = patient_user.id
+    @patient.user_id = patient_user.id # link user to be a patient
     @patient.save
     redirect_to patient_path(@patient)
   end

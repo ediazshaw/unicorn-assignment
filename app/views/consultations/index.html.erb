@@ -8,6 +8,7 @@
   <p>Date: <%= consultation.date %></p>
   <p>Starting Time: <%= consultation.starting_time.strftime("%H:%M %p") %></p>
   <p>Ending Time: <%= (consultation.starting_time + (consultation.duration * 60)).strftime("%H:%M %p") %></p>
+  <%# Next line: only show if current user is a doctor or and admin for letting them cancel an appointment %>
   <% if Admin.find_by(email:current_user.email).class.to_s == "Admin" || Doctor.find_by(email:current_user.email).class.to_s == "Doctor" %>
     <p>Cancel Appointment <%= link_to "Click Here", cancel_consultation_path(consultation.id) %></p>
   <% end %>

@@ -1,9 +1,8 @@
 <h1>Doctors</h1>
+<%# in array we have the consultations of a given doctor %>
+<%# In array_with_keys we are saving the slots slots that are occupied %>
 <% @doctors.each do |doctor| %>
-
-
 <% array = Consultation.where(doctor_id: doctor.id).where(cancelled: false) %>
-
 <% array_with_keys = [] %>
 <% array.each do |consult| %>
   <% end_time = (consult.starting_time + (consult.duration * 60)) %>
@@ -13,16 +12,16 @@
     <% start_slot =  (start_slot + (15 * 60)) %>
   <% end %>
 <% end %>
-
-
-
-  <% number_appoinments = Consultation.where(doctor_name: doctor.name).where(cancelled: false).size %>
-  <% number_minutes = 0 %>
-  <% Consultation.where(doctor_name: doctor.name).where(cancelled: false).each do |consult| %>
-    <% number_minutes += consult.duration %>
-  <% end %>
-  <p><%= doctor.name if number_appoinments <= 12 && number_minutes <= 60*8  %></p>
-<p>Not available slots: <%= array_with_keys.sort.each{|x| x} %></p>
+<%# number_appointments has the number of apointmets per doctor per day for meeting the condition of no more than 12 %>
+<% number_appoinments = Consultation.where(doctor_name: doctor.name).where(cancelled: false).size %>
+<%# number_appointments has the number of minutes per doctor per day for meeting the condition of no more than 8 hours %>
+<% number_minutes = 0 %>
+<% Consultation.where(doctor_name: doctor.name).where(cancelled: false).each do |consult| %>
+  <% number_minutes += consult.duration %>
+<% end %>
+<%# Checking conditions for showing or not showing availabilty of doctor%>
+<p><%= doctor.name if number_appoinments <= 12 && number_minutes <= 60*8  %></p>
+  <p>Not available slots: <%= array_with_keys.sort.each{|x| x} %></p>
 <% end %>
 <%= simple_form_for [@patient, @consultation] do |f| %>
   <p>Select a doctor, please select and available slot</p>

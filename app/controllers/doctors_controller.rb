@@ -17,13 +17,13 @@ class DoctorsController < ApplicationController
   def create
     @doctor = Doctor.new(doctor_params)
     doctor_user = User.find_by(email:"#{@doctor.email}")
-    @doctor.user_id = doctor_user.id
+    @doctor.user_id = doctor_user.id # linking user to be a doctor
     @doctor.save
-    redirect_to doctor_path(@doctor)
+    redirect_to type_path
   end
 
   def slots
-    @hour = 9
+  
   end
 
   def busiest_doctors
